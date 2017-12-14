@@ -7,6 +7,7 @@
 //
 
 #import "TMAPIRequest.h"
+#import "TMPathTemplateURLBuilder.h"
 
 @interface TMAPIRequest ()
 
@@ -145,7 +146,16 @@
 }
 
 - (nonnull NSURL *)URL {
-    NSURL *URL = [self.baseURL URLByAppendingPathComponent:self.path];
+    NSURL *URL;
+
+    if (self.pathParameters) {
+        TMPathTemplateURLBuilder *urlBuilder = [[TMPathTemplateURLBuilder alloc] init];
+
+        URL = [urlBuilder urlWithRoot:self.baseURL.absoluteString path:self.path pathParameters:self.pathParameters];
+    }
+    else {
+        URL = [self.baseURL URLByAppendingPathComponent:self.path];
+    }
 
     if (!URL) {
         @throw [[NSException alloc] initWithName:@"Illegal URL or Path exception" reason:@"The URL generated was nil." userInfo:nil];

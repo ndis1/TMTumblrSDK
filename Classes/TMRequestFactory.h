@@ -61,7 +61,7 @@ __attribute__((objc_subclassing_restricted))
                                    method:(TMHTTPRequestMethod)method
                           queryParameters:(nullable NSDictionary *)queryParameters;
 
-- (nonnull id <TMRequest>)requestWithPath:(nonnull NSString *)path
+- (nonnull id <TMRequest>)requestWithTemplatePath:(nonnull NSString *)templatePath
                                    method:(TMHTTPRequestMethod)method
                            pathParameters:(nullable NSDictionary *)pathParameters
                           queryParameters:(nullable NSDictionary *)queryParameters;
