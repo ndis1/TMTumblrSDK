@@ -79,4 +79,13 @@ __attribute__((objc_subclassing_restricted))
                        additionalHeaders:(nullable NSDictionary *)additionalHeaders
                                isUpload:(BOOL)isUpload;
 
+- (nonnull instancetype)initWithBaseURL:(nonnull NSURL *)baseURL
+                                 method:(TMHTTPRequestMethod)method
+                                   path:(nonnull NSString *)path
+                         pathParameters:(nullable NSDictionary *)pathParameters
+                        queryParameters:(nullable NSDictionary *)queryParameters
+                            requestBody:(nullable id <TMRequestBody>)requestBody
+                      additionalHeaders:(nullable NSDictionary *)additionalHeaders
+                               isUpload:(BOOL)isUpload;
+
 @end

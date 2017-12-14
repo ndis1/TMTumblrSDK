@@ -20,6 +20,8 @@
  */
 @property (nonatomic, nonnull, readonly) NSString *path;
 
+@property (nonatomic, nullable, copy, readonly) NSDictionary *pathParameters;
+
 @end
 
 @implementation TMAPIRequest
@@ -28,6 +30,31 @@
 @synthesize queryParameters = _queryParameters;
 @synthesize requestBody = _requestBody;
 @synthesize isUpload = _isUpload;
+
+- (nonnull instancetype)initWithBaseURL:(nonnull NSURL *)baseURL
+                                 method:(TMHTTPRequestMethod)method
+                                   path:(nonnull NSString *)path
+                        pathParameters:(nullable NSDictionary *)pathParameters
+                        queryParameters:(nullable NSDictionary *)queryParameters
+                            requestBody:(nullable id <TMRequestBody>)requestBody
+                      additionalHeaders:(nullable NSDictionary *)additionalHeaders
+                               isUpload:(BOOL)isUpload {
+
+    self = [self initWithBaseURL:baseURL
+                          method:method
+                            path:path
+                 queryParameters:queryParameters
+                     requestBody:requestBody
+               additionalHeaders:additionalHeaders
+                        isUpload:isUpload];
+
+    if (self) {
+        _pathParameters = pathParameters;
+    }
+
+    return self;
+
+}
 
 - (nonnull instancetype)initWithBaseURL:(nonnull NSURL *)baseURL
                                  method:(TMHTTPRequestMethod)method

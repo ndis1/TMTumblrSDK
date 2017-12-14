@@ -418,4 +418,19 @@ NSString * _Nonnull const TMRequestFactoryInvalidateBaseURLNotificationKey = @"T
                                additionalHeaders:nil];
 }
 
+- (nonnull id <TMRequest>)requestWithPath:(nonnull NSString *)path
+                                   method:(TMHTTPRequestMethod)method
+                           pathParameters:(nullable NSDictionary *)pathParameters
+                          queryParameters:(nullable NSDictionary *)queryParameters {
+
+    return [[TMAPIRequest alloc] initWithBaseURL:self.baseURL
+                                          method:method
+                                            path:path
+                                  pathParameters:pathParameters
+                                 queryParameters:queryParameters
+                                     requestBody:nil
+                               additionalHeaders:nil
+                                        isUpload:NO];
+}
+
 @end
